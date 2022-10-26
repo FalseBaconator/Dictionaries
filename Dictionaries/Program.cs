@@ -10,6 +10,17 @@ namespace Dictionaries
     {
         static Dictionary<string, string> itemDescriptions = new Dictionary<string, string>();
 
+        static void Main(string[] args)
+        {
+            FillInventory();
+            ShowInventory();
+            Describe("Phone");
+            Describe("A");
+            Describe("Book");
+            Describe("Key");
+            Describe("Letter");
+        }
+
         static void FillInventory()
         {
             itemDescriptions.Add("Phone", "This is yours.");
@@ -33,9 +44,19 @@ namespace Dictionaries
             Console.ReadKey(true);
         }
 
-        static void Main(string[] args)
+        static void Describe(string key)
         {
-            
+            Console.WriteLine("Attempting to describe " + key);
+            if (itemDescriptions.ContainsKey(key))
+            {
+                Console.WriteLine(key + ":" + itemDescriptions[key]);
+            }
+            else
+            {
+                Console.WriteLine("Error: No " + key + "s in your inventory");
+            }
+            ShowInventory();
         }
+
     }
 }
